@@ -1,221 +1,2707 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AFFANJALANBAIK — FIND YOUR SOUND.</title>
-<meta name="theme-color" content="#FFFFFF">
-<style>
-/* ============ DESIGN SYSTEM ============ */
-:root{
-  --bg:#FFFFFF;--bg2:#F7F7F8;--bg3:#F0F1F2;--text:#171717;--text2:#737373;
-  --muted:#A3A3A3;--border:#E5E5E5;--accent:#B7E65A;--dark:#171717;
-  --white:#FFF;--success:#258A55;--error:#D64545;--warn:#D99A32;
-  --radius:12px;--maxw:1200px;
-  --pad:clamp(16px,4vw,32px);
-  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.55;
-  padding-bottom:env(safe-area-inset-bottom)}
-button{font-family:inherit;cursor:pointer;border:none;background:none;font-size:inherit}
-input,select,textarea{font-family:inherit;font-size:16px} /* 16px = no iOS zoom */
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:4px}
-.container{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="AFFANJALANBAIK marketplace for original instrumentals and music beats." />
+  <meta name="theme-color" content="#FFFFFF" />
+  <title>AFFANJALANBAIK — FIND YOUR SOUND.</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --bg2: #F7F7F8;
+      --bg3: #F0F1F2;
+      --text: #171717;
+      --text2: #737373;
+      --muted: #A3A3A3;
+      --border: #E5E5E5;
+      --accent: #B7E65A;
+      --dark: #171717;
+      --white: #FFFFFF;
+      --success: #258A55;
+      --error: #D64545;
+      --warn: #D99A32;
+      --radius: 12px;
+      --maxw: 1200px;
+      --pad: clamp(16px, 4vw, 32px);
+      --font: Inter, "Segoe UI", sans-serif;
+    }
 
-/* Typography */
-h1{font-size:clamp(36px,6vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
-h2{font-size:clamp(24px,4vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.15}
-h3{font-size:17px;font-weight:600}
-.page-h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em}
-.meta{font-size:12px;color:var(--text2)}
-.body{font-size:15px;color:var(--text2);max-width:60ch}
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea {
+      font: inherit;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+    input, select, textarea {
+      font-size: 16px;
+    }
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
 
-/* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  min-height:44px;padding:0 24px;border-radius:10px;font-weight:600;font-size:14px;
-  letter-spacing:.02em;transition:all .18s ease;user-select:none}
-.btn:active{transform:scale(.97)}
-.btn-primary{background:var(--dark);color:var(--white)}
-.btn-primary:hover{background:#000}
-.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
-.btn-secondary:hover{border-color:var(--text)}
-.btn-accent{background:var(--accent);color:var(--text)}
-.btn-accent:hover{filter:brightness(.95)}
-.btn-ghost{color:var(--text2);padding:0 12px;min-height:40px}
-.btn-ghost:hover{color:var(--text)}
-.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
-.btn-sm{min-height:36px;padding:0 16px;font-size:13px}
-.btn-block{width:100%}
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
-/* Header */
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);
-  backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
-  border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top)}
-.header-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);height:72px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{font-weight:800;font-size:15px;letter-spacing:.06em;white-space:nowrap}
-nav.main{display:flex;gap:4px}
-nav.main a{padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;
-  color:var(--text2);transition:all .18s}
-nav.main a:hover{color:var(--text)}
-nav.main a.active{color:var(--text);font-weight:600;box-shadow:inset 0 -2px 0 var(--accent)}
-.header-right{display:flex;align-items:center;gap:8px}
-.icon-btn{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
-  border-radius:10px;color:var(--text);transition:background .18s;position:relative}
-.icon-btn:hover{background:var(--bg2)}
-.cart-badge{position:absolute;top:4px;right:4px;min-width:17px;height:17px;padding:0 4px;
-  background:var(--accent);color:var(--text);border-radius:9px;font-size:11px;font-weight:700;
-  display:flex;align-items:center;justify-content:center}
-#menuBtn{display:none}
-.mobile-nav{display:none;position:fixed;inset:0;z-index:99;background:var(--bg);padding:88px var(--pad) 24px}
-.mobile-nav.open{display:block}
-.mobile-nav a{display:block;padding:16px 0;font-size:18px;font-weight:600;
-  border-bottom:1px solid var(--border)}
-.mobile-nav a.active{color:var(--text)}
-.mobile-nav a.active::after{content:"";display:inline-block;width:8px;height:8px;margin-left:10px;
-  border-radius:50%;background:var(--accent)}
+    h1, h2, h3, h4, p {
+      margin: 0;
+    }
+    h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+    h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+    h3 {
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+    p {
+      color: var(--text2);
+      font-size: 15px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text2);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .meta {
+      font-size: 12px;
+      color: var(--text2);
+      font-weight: 500;
+    }
+    .muted {
+      color: var(--text2);
+    }
+    .small {
+      font-size: 12px;
+    }
 
-/* Hero */
-.hero{padding:64px 0 48px}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.hero-art{aspect-ratio:1;max-width:440px;width:100%;justify-self:end}
-.hero p{margin:20px 0 32px;font-size:17px;color:var(--text2);max-width:44ch}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
-@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.hero{padding:40px 0 32px}
-  .hero-art{justify-self:center;max-width:300px;order:-1}}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 22px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transition: all 0.18s ease;
+      user-select: none;
+      border: 1px solid transparent;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn[disabled] {
+      opacity: 0.46;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .btn-primary {
+      background: var(--dark);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: #000; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+    .btn-accent {
+      background: var(--accent);
+      color: var(--text);
+    }
+    .btn-accent:hover { filter: brightness(0.96); }
+    .btn-ghost {
+      padding: 0 12px;
+      min-height: 40px;
+      color: var(--text2);
+    }
+    .btn-ghost:hover { color: var(--text); }
+    .btn-sm {
+      min-height: 36px;
+      padding: 0 16px;
+      font-size: 13px;
+    }
+    .btn-block { width: 100%; }
 
-/* Sections */
-section.block{padding:56px 0}
-@media(max-width:760px){section.block{padding:40px 0}}
-.sec-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
-.sec-head p{color:var(--text2);font-size:14px;margin-top:6px}
-.link-arrow{font-size:14px;font-weight:600;color:var(--text);display:inline-flex;align-items:center;gap:6px}
-.link-arrow:hover{gap:10px}.link-arrow{transition:gap .18s}
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-/* Cards grid */
-.grid{display:grid;gap:20px;grid-template-columns:repeat(3,1fr)}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:400px){.grid{grid-template-columns:1fr}}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 120;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      padding-top: env(safe-area-inset-top);
+    }
+    .header-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(183, 230, 90, 0.18);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      color: var(--text2);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.18s ease;
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a.active {
+      color: var(--text);
+      box-shadow: inset 0 -2px 0 var(--accent);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .icon-btn {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: background 0.18s ease;
+    }
+    .icon-btn:hover { background: var(--bg2); }
+    .cart-badge {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .mobile-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 110;
+      background: rgba(255,255,255,0.98);
+      padding: 88px var(--pad) 24px;
+      overflow: auto;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav-links {
+      display: grid;
+      gap: 10px;
+    }
+    .mobile-nav-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .mobile-nav-links a.active::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      margin-left: 12px;
+    }
 
-/* Beat card */
-.beat-card{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
-  background:var(--bg);display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
-.beat-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.07);transform:translateY(-2px)}
-.cover{position:relative;aspect-ratio:1;background:var(--bg2)}
-.cover svg{width:100%;height:100%;display:block}
-.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(23,23,23,0);transition:background .2s;opacity:0}
-.beat-card:hover .play-overlay{opacity:1;background:rgba(23,23,23,.35)}
-.play-overlay button{width:56px;height:56px;border-radius:50%;background:var(--white);
-  display:flex;align-items:center;justify-content:center}
-.playing-dot{position:absolute;top:10px;right:10px;width:10px;height:10px;border-radius:50%;
-  background:var(--accent);animation:pulse 1.2s infinite}
-@keyframes pulse{50%{opacity:.4}}
-.card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.card-title-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.card-title{font-size:16px;font-weight:700;letter-spacing:-.01em}
-.card-price{font-size:15px;font-weight:700;white-space:nowrap}
-.card-meta{display:flex;gap:6px;flex-wrap:wrap}
-.chip-tag{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;
-  background:var(--bg2);color:var(--text2)}
-.card-actions{display:flex;gap:8px;margin-top:auto;padding-top:8px}
-.card-actions .btn{flex:1;min-height:40px;font-size:13px}
-.cover-link{position:absolute;inset:0;z-index:1}
-.play-overlay,.card-actions{position:relative;z-index:2}
+    main {
+      flex: 1;
+    }
+    .page-section {
+      padding: 56px 0;
+    }
+    @media (max-width: 760px) {
+      .page-section { padding: 42px 0; }
+    }
 
-/* Filter chips */
-.chip{padding:7px 14px;border-radius:20px;border:1px solid var(--border);font-size:13px;
-  font-weight:500;color:var(--text2);transition:all .18s;background:var(--bg)}
-.chip:hover{border-color:var(--text2)}
-.chip.on{background:var(--text);color:var(--white);border-color:var(--text)}
-.chip.on::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
-  background:var(--accent);margin-right:7px;vertical-align:1px}
+    .hero {
+      padding: 52px 0 36px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .hero-copy p {
+      font-size: 17px;
+      max-width: 44ch;
+      color: var(--text2);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .hero-art {
+      width: min(100%, 440px);
+      justify-self: end;
+    }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { order: -1; width: min(100%, 300px); justify-self: center; }
+      .hero { padding-top: 42px; }
+    }
 
-/* Toolbar / search */
-.toolbar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.search-wrap{flex:1;min-width:220px;position:relative}
-.search-wrap input{width:100%;height:46px;border:1px solid var(--border);border-radius:10px;
-  padding:0 44px 0 42px;font-size:15px;background:var(--bg);transition:border-color .18s}
-.search-wrap input:focus{outline:none;border-color:var(--text)}
-.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
-.search-clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;
-  border-radius:8px;color:var(--text2);display:none;align-items:center;justify-content:center}
-.search-wrap input:not(:placeholder-shown)~.search-clear{display:inline-flex}
-.select{height:46px;border:1px solid var(--border);border-radius:10px;padding:0 12px;
-  background:var(--bg);font-size:14px;color:var(--text)}
-.active-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
-.filter-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 6px 5px 12px;
-  border-radius:20px;background:var(--bg2);font-size:12px;font-weight:600}
-.filter-pill button{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;color:var(--text2);font-size:13px}
-.filter-pill button:hover{background:var(--bg3);color:var(--text)}
+    .abstract-art {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #f1f3f0 0%, #ffffff 100%);
+    }
 
-/* Filter drawer (mobile) */
-.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:120;
-  opacity:0;pointer-events:none;transition:opacity .2s}
-.drawer{position:fixed;left:0;right:0;bottom:0;z-index:121;background:var(--bg);
-  border-radius:20px 20px 0 0;max-height:80vh;overflow:auto;
-  transform:translateY(100%);transition:transform .25s ease;
-  padding:20px var(--pad) calc(24px + env(safe-area-inset-bottom))}
-.drawer.open{transform:translateY(0)}
-.drawer-backdrop.open{opacity:1;pointer-events:auto}
-.drawer h3{margin-bottom:16px}
-.filter-group{margin-bottom:20px}
-.filter-group h4{font-size:12px;text-transform:uppercase;letter-spacing:.06em;
-  color:var(--text2);margin-bottom:10px}
-.filter-group .chips{display:flex;flex-wrap:wrap;gap:8px}
-#filterDrawerBtn{display:none}
-@media(max-width:760px){#filterDrawerBtn{display:inline-flex}
-  .desktop-filters{display:none}}
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .section-head p {
+      margin-top: 6px;
+      color: var(--text2);
+      font-size: 14px;
+      max-width: 56ch;
+    }
+    .link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      transition: gap 0.18s ease;
+    }
+    .link-arrow:hover { gap: 12px; }
 
-/* Results / states */
-.results-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap}
-.state-box{text-align:center;padding:64px 20px;color:var(--text2)}
-.state-box h3{color:var(--text);margin-bottom:8px}
-.skeleton{border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;
-  background:var(--bg);animation:sk 1.4s infinite}
-@keyframes sk{50%{opacity:.6}}
-.skeleton .sk-cover{aspect-ratio:1;background:var(--bg2)}
-.skeleton .sk-line{height:14px;margin:14px 16px;border-radius:6px;background:var(--bg2)}
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 900px) {
+      .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
 
-/* Audio player */
-.player{border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;
-  background:var(--bg2)}
-.player-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.player-play{width:44px;height:44px;border-radius:50%;background:var(--dark);color:var(--white);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s}
-.player-play:active{transform:scale(.92)}
-.player-play[disabled]{background:var(--bg3);color:var(--muted);cursor:not-allowed}
-.player-info{flex:1;min-width:0}
-.player-title{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.player-time{font-size:12px;color:var(--text2);font-variant-numeric:tabular-nums}
-.progress{width:100%;height:6px;border-radius:3px;background:var(--bg3);cursor:pointer;
-  -webkit-appearance:none;appearance:none;margin:8px 0}
-.progress::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;
-  background:var(--dark);cursor:pointer}
-.progress::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--dark);border:none}
-.progress[disabled]{cursor:not-allowed}
-.progress[disabled]::-webkit-slider-thumb{background:var(--muted)}
-.player-msg{font-size:12px;font-weight:600;color:var(--warn);text-transform:uppercase;
-  letter-spacing:.05em}
-.player-msg.err{color:var(--error)}
+    .beat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      min-height: 100%;
+    }
+    .beat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+    }
+    .beat-cover {
+      position: relative;
+      aspect-ratio: 1;
+      background: var(--bg2);
+    }
+    .cover-center {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(23,23,23,0);
+      transition: background 0.2s ease, opacity 0.2s ease;
+      opacity: 0;
+    }
+    .beat-card:hover .play-overlay {
+      background: rgba(23,23,23,0.28);
+      opacity: 1;
+    }
+    .circle-button {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.96);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+      position: relative;
+      z-index: 2;
+    }
+    .playing-dot {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.4s infinite ease-in-out;
+      z-index: 3;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.6; }
+    }
+    .card-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .card-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .card-title {
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .card-price {
+      font-weight: 700;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 7px;
+      background: var(--bg2);
+      color: var(--text2);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .card-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+      padding-top: 8px;
+    }
+    .card-actions .btn {
+      flex: 1;
+      min-height: 40px;
+      font-size: 13px;
+      padding: 0 12px;
+    }
 
-/* Details page */
-.details-grid{display:grid;grid-template-columns:minmax(0,440px) 1fr;gap:40px;
-  padding:40px 0;align-items:start}
-@media(max-width:860px){.details-grid{grid-template-columns:1fr;gap:24px}}
-.details-cover{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
-.spec-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
-.spec{padding:8px 14px;border:1px solid var(--border);border-radius:10px;font-size:13px}
-.spec b{font-weight:600}
-.price-big{font-size:28px;font-weight:800;margin:16px 0 8px}
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    @media (max-width: 760px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      padding: 22px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg2);
+    }
+    .feature-card strong {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 10px;
+    }
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
 
-/* Licenses */
-.lic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}
-@media(max-width:760px){.lic-grid{grid-template-columns:1fr}}
-.lic-card{border
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    @media (max-width: 820px) {
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+    .step {
+      padding: 20px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+    }
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cta-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 22px;
+      flex-wrap: wrap;
+    }
+    .cta-banner h2 {
+      font-size: clamp(24px, 3vw, 34px);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+    }
+    .search-wrap input {
+      width: 100%;
+      min-height: 46px;
+      padding: 0 44px 0 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .search-wrap input:focus {
+      outline: none;
+      border-color: var(--text);
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+    .search-clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--text2);
+    }
+    .search-wrap input:not(:placeholder-shown) + .search-clear,
+    .search-wrap input:not(:placeholder-shown) ~ .search-clear {
+      display: inline-flex;
+    }
+    .select {
+      min-height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0 12px;
+      min-width: 160px;
+    }
+    .filter-btn {
+      display: none;
+    }
+
+    .desktop-filters {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin: 16px 0 18px;
+    }
+    .filter-panel {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .filter-panel h4 {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 10px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text2);
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.18s ease;
+    }
+    .chip:hover { border-color: var(--text2); }
+    .chip.active {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+    .chip.active::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 8px;
+    }
+    .active-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-height: 32px;
+      margin-bottom: 8px;
+    }
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 8px 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .filter-pill button {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text2);
+    }
+    .filter-pill button:hover { background: var(--bg3); }
+    .results-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0 18px;
+    }
+    .results-row .meta {
+      font-weight: 600;
+    }
+    .state-box {
+      padding: 58px 22px;
+      text-align: center;
+    }
+    .state-box h3 {
+      margin-bottom: 8px;
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.42);
+      z-index: 130;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 131;
+      background: var(--bg);
+      border-radius: 20px 20px 0 0;
+      padding: 18px var(--pad) calc(24px + env(safe-area-inset-bottom));
+      transform: translateY(100%);
+      transition: transform 0.24s ease;
+      max-height: 82vh;
+      overflow: auto;
+    }
+    .drawer.open { transform: translateY(0); }
+    .drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .drawer-panel {
+      margin-bottom: 16px;
+    }
+    .drawer-panel h4 {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 10px;
+    }
+
+    .player {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg2);
+      padding: 14px 16px;
+      margin-top: 18px;
+    }
+    .player-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .player-play {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--dark);
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .player-play[disabled] {
+      background: var(--bg3);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+    .player-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .player-title {
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .player-time {
+      font-size: 12px;
+      color: var(--text2);
+      font-variant-numeric: tabular-nums;
+    }
+    .player-slider {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--bg3);
+      appearance: none;
+      -webkit-appearance: none;
+      margin: 8px 0;
+    }
+    .player-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--dark);
+      cursor: pointer;
+    }
+    .player-slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--dark);
+      border: none;
+      cursor: pointer;
+    }
+    .player-msg {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--warn);
+    }
+    .player-msg.error { color: var(--error); }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+      padding-top: 20px;
+    }
+    @media (max-width: 860px) {
+      .details-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .details-cover {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .beat-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 18px;
+    }
+    .spec-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .price-big {
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 10px 0 12px;
+    }
+    .license-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    @media (max-width: 760px) {
+      .license-grid { grid-template-columns: 1fr; }
+    }
+    .license-card {
+      position: relative;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .license-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.04);
+    }
+    .license-card.selected {
+      border-color: var(--text);
+      background: rgba(183,230,90,0.06);
+    }
+    .license-card.exclusive {
+      background: var(--bg2);
+    }
+    .license-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .license-card h3 {
+      font-size: 18px;
+    }
+    .license-price {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .license-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 16px;
+      display: grid;
+      gap: 8px;
+    }
+    .license-features li {
+      color: var(--text2);
+      font-size: 13px;
+      position: relative;
+      padding-left: 18px;
+    }
+    .license-features li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .license-link {
+      font-size: 12px;
+      color: var(--text2);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .exclusive-callout {
+      margin-top: 16px;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      background: rgba(217,154,50,0.04);
+      color: var(--text);
+      padding: 12px 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .related-grid {
+      margin-top: 26px;
+    }
+
+    .page-header {
+      padding-top: 26px;
+      padding-bottom: 8px;
+    }
+    .page-header h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-top: 6px;
+    }
+    .page-header p {
+      margin-top: 12px;
+      max-width: 62ch;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+    @media (max-width: 860px) {
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    .story-card,
+    .form-card,
+    .summary-card,
+    .info-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+    }
+    .story-card h3,
+    .info-card h3,
+    .summary-card h3,
+    .form-card h3 {
+      margin-bottom: 12px;
+    }
+    .story-card p + p,
+    .info-card p + p {
+      margin-top: 12px;
+    }
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .contact-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .contact-item:last-child { border-bottom: none; }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+    .field label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text2);
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 10px 12px;
+    }
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-note {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text2);
+    }
+    .input-error {
+      color: var(--error);
+      font-size: 12px;
+      font-weight: 700;
+      min-height: 14px;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+      gap: 24px;
+      align-items: start;
+      margin-top: 18px;
+    }
+    @media (max-width: 860px) {
+      .cart-layout { grid-template-columns: 1fr; }
+    }
+    .cart-list {
+      display: grid;
+      gap: 16px;
+    }
+    .cart-item {
+      display: grid;
+      grid-template-columns: 110px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    @media (max-width: 560px) {
+      .cart-item {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+    }
+    .cart-cover {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+    }
+    .cart-item .details {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+    .cart-item h3 {
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    .cart-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .cart-license-select {
+      max-width: 180px;
+      min-height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0 10px;
+      font-size: 13px;
+    }
+    .cart-item .remove-btn {
+      justify-self: end;
+      color: var(--text2);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .summary-card {
+      position: sticky;
+      top: 92px;
+    }
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 0;
+      color: var(--text2);
+      font-size: 14px;
+    }
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-weight: 800;
+    }
+    .checkout-notice {
+      margin-top: 14px;
+      border-radius: 10px;
+      background: rgba(217,154,50,0.08);
+      border: 1px solid rgba(217,154,50,0.28);
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 64px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg2);
+    }
+    .empty-state h3 {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      margin-top: 32px;
+    }
+    .footer-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 30px var(--pad) 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 860px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+    .footer-brand {
+      display: grid;
+      gap: 8px;
+    }
+    .footer-nav, .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+    .footer-links a,
+    .footer-nav a {
+      color: var(--text2);
+      font-size: 14px;
+    }
+    .copy {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      background: var(--dark);
+      color: var(--white);
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 200;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 760px) {
+      .nav { display: none; }
+      .mobile-toggle { display: inline-flex; }
+      .desktop-filters { display: none; }
+      .filter-btn { display: inline-flex; }
+      .search-wrap { min-width: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="header-inner">
+        <a href="#/home" class="brand" data-route="home">
+          <span class="brand-mark"></span>
+          <span>AFFANJALANBAIK</span>
+        </a>
+
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#/home" data-route="home" class="active">Home</a>
+          <a href="#/explore" data-route="explore">Explore Beats</a>
+          <a href="#/about" data-route="about">About</a>
+          <a href="#/contact" data-route="contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" data-action="open-cart" aria-label="Open shopping cart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.2 9.3a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L18 7H6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="17.5" r="1.2" fill="currentColor"/><circle cx="16.5" cy="17.5" r="1.2" fill="currentColor"/></svg>
+            <span class="cart-badge">0</span>
+          </button>
+          <button class="mobile-toggle icon-btn" type="button" data-action="toggle-menu" aria-label="Toggle mobile navigation">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <div class="mobile-nav-links">
+        <a href="#/home" data-route="home">Home</a>
+        <a href="#/explore" data-route="explore">Explore Beats</a>
+        <a href="#/about" data-route="about">About</a>
+        <a href="#/contact" data-route="contact">Contact</a>
+      </div>
+    </nav>
+
+    <main id="app"></main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand"><span class="brand-mark"></span><span>AFFANJALANBAIK</span></div>
+          <div class="muted" style="font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;">FIND YOUR SOUND.</div>
+        </div>
+        <div class="footer-nav">
+          <strong>Navigation</strong>
+          <a href="#/home" data-route="home">Home</a>
+          <a href="#/explore" data-route="explore">Explore Beats</a>
+          <a href="#/about" data-route="about">About</a>
+          <a href="#/contact" data-route="contact">Contact</a>
+        </div>
+        <div class="footer-links">
+          <strong>Information</strong>
+          <a href="#/explore" data-route="explore">Licensing</a>
+          <a href="#/about" data-route="about">Terms and Conditions</a>
+          <a href="#/about" data-route="about">Privacy Policy</a>
+        </div>
+        <div class="footer-links">
+          <strong>Social</strong>
+          <a href="https://instagram.com/affanjalanbaik" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+      <div class="container">
+        <div class="copy">© 2026 AFFANJALANBAIK. All rights reserved.</div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+    const BEATS = [
+      {
+        id: 'nightshift',
+        title: 'NIGHTSHIFT',
+        genre: 'R&B / Trap',
+        bpm: 142,
+        key: 'F#m',
+        startingPrice: 19.99,
+        description: 'Late-night melodic textures built for vocal hooks, intimate verses, and moody momentum.',
+        audioSource: '',
+        palette: ['#F1E7D6', '#D4C2A8', '#A77D59', '#2A2A2A']
+      },
+      {
+        id: 'no-signal',
+        title: 'NO SIGNAL',
+        genre: 'Jerk',
+        bpm: 160,
+        key: 'C#m',
+        startingPrice: 16.99,
+        description: 'Fast-paced, sharp-edged energy with restless drums and aggressive rhythmic layering.',
+        audioSource: '',
+        palette: ['#F4F1EE', '#D9D5D8', '#B7A5B2', '#1B1D28']
+      },
+      {
+        id: 'after-hours',
+        title: 'AFTER HOURS',
+        genre: 'Melodic Trap',
+        bpm: 136,
+        key: 'G#m',
+        startingPrice: 19.99,
+        description: 'Smooth atmospheric loops and late-evening melodic tension designed for introspective performances.',
+        audioSource: '',
+        palette: ['#F2E9F5', '#D8C7E9', '#8B78B7', '#1E2233']
+      },
+      {
+        id: 'cold-heart',
+        title: 'COLD HEART',
+        genre: 'R&B',
+        bpm: 118,
+        key: 'Am',
+        startingPrice: 24.99,
+        description: 'Warm chord movement and spacious rhythm designed for emotional hooks and slower delivery.',
+        audioSource: '',
+        palette: ['#EAF0F2', '#CDE1E6', '#8AB0B7', '#2A3A45']
+      },
+      {
+        id: 'offline',
+        title: 'OFFLINE',
+        genre: 'Rage',
+        bpm: 154,
+        key: 'Dm',
+        startingPrice: 16.99,
+        description: 'Unfiltered impact with raw texture, sharp percussion, and a restless, aggressive cadence.',
+        audioSource: '',
+        palette: ['#F4F0EE', '#E5D5D3', '#C89B9B', '#2B1D2A']
+      },
+      {
+        id: '2am-again',
+        title: '2AM AGAIN',
+        genre: 'Ambient Trap',
+        bpm: 130,
+        key: 'Em',
+        startingPrice: 19.99,
+        description: 'Dreamy melodic breathing with laid-back pulse and reflective movement for intimate storytelling.',
+        audioSource: '',
+        palette: ['#E9F0ED', '#C9D9D6', '#7BA29D', '#1A2A2A']
+      }
+    ];
+
+    const LICENSES = {
+      basic: {
+        id: 'basic',
+        name: 'Basic Lease',
+        price: 19.99,
+        files: ['MP3 delivery placeholder'],
+        summary: 'Non-exclusive license with core delivery for demos and release planning.',
+        terms: 'View license terms',
+        description: 'Basic usage terms.'
+      },
+      premium: {
+        id: 'premium',
+        name: 'Premium Lease',
+        price: 39.99,
+        files: ['MP3 delivery placeholder', 'WAV delivery placeholder'],
+        summary: 'Extended usage terms with more flexibility for professional release needs.',
+        terms: 'View license terms',
+        description: 'Extended usage terms.'
+      },
+      exclusive: {
+        id: 'exclusive',
+        name: 'Exclusive',
+        price: 0,
+        files: ['Exclusive purchase inquiry'],
+        summary: 'Producer approval required before any exclusive arrangement is confirmed.',
+        terms: 'Producer approval required',
+        description: 'Exclusive purchase inquiry.'
+      }
+    };
+
+    const state = {
+      route: 'home',
+      selectedBeatId: null,
+      cart: loadCart(),
+      search: '',
+      sort: 'newest',
+      filters: {
+        genre: [],
+        bpm: [],
+        key: [],
+        price: []
+      },
+      mobileMenuOpen: false,
+      cartDrawerOpen: false,
+      toastTimer: null,
+      audio: {
+        element: null,
+        currentBeatId: null,
+        playing: false,
+        currentTime: 0,
+        duration: 0
+      }
+    };
+
+    init();
+
+    function init() {
+      if (!state.audio.element) {
+        state.audio.element = new Audio();
+        state.audio.element.preload = 'none';
+      }
+      bindGlobalEvents();
+      render();
+      handleHashChange();
+    }
+
+    function bindGlobalEvents() {
+      window.addEventListener('hashchange', handleHashChange);
+      document.addEventListener('click', handleDocumentClick);
+      document.addEventListener('input', handleDocumentInput);
+      document.addEventListener('change', handleDocumentChange);
+      document.addEventListener('submit', handleDocumentSubmit);
+    }
+
+    function handleHashChange() {
+      const hash = location.hash || '#/home';
+      const route = hash.replace(/^#\/?/, '') || 'home';
+      if (route.startsWith('beat/')) {
+        state.route = 'detail';
+        const beatId = route.replace('beat/', '');
+        state.selectedBeatId = beatId;
+      } else if (route === 'explore') {
+        state.route = 'explore';
+      } else if (route === 'about') {
+        state.route = 'about';
+      } else if (route === 'contact') {
+        state.route = 'contact';
+      } else if (route === 'cart') {
+        state.route = 'cart';
+      } else if (route === 'checkout') {
+        state.route = 'checkout';
+      } else if (route === 'confirmation') {
+        state.route = 'confirmation';
+      } else {
+        state.route = 'home';
+      }
+      updateActiveNav();
+      render();
+    }
+
+    function render() {
+      const app = document.getElementById('app');
+      const route = state.route;
+      let html = '';
+
+      if (route === 'home') html = renderHome();
+      else if (route === 'explore') html = renderExplore();
+      else if (route === 'detail') html = renderDetails();
+      else if (route === 'about') html = renderAbout();
+      else if (route === 'contact') html = renderContact();
+      else if (route === 'cart') html = renderCart();
+      else if (route === 'checkout') html = renderCheckout();
+      else if (route === 'confirmation') html = renderConfirmation();
+      else html = renderHome();
+
+      app.innerHTML = html;
+      renderCartBadge();
+      updateMobileNav();
+      renderFilterDrawer();
+      renderMobileMenu();
+      if (state.route === 'explore') {
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) sortSelect.value = state.sort;
+      }
+    }
+
+    function renderHome() {
+      const featured = BEATS.slice(0, 3);
+      return `
+        <section class="hero">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <div class="eyebrow">Independent production</div>
+              <h1>FIND YOUR SOUND.</h1>
+              <p>Discover beats made for your next release.</p>
+              <div class="hero-actions">
+                <a href="#/explore" class="btn btn-primary" data-route="explore">Explore beats</a>
+                <a href="#/contact" class="btn btn-secondary" data-route="contact">Contact</a>
+              </div>
+            </div>
+            <div class="hero-art">
+              ${renderArtSVG(BEATS[0])}
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">Featured collection</div>
+                <h2>Selected instrumentals</h2>
+              </div>
+              <a href="#/explore" class="link-arrow" data-route="explore">View all beats <span>→</span></a>
+            </div>
+            <div class="card-grid">${featured.map(renderBeatCard).join('')}</div>
+          </div>
+        </section>
+
+        <section class="page-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">Why AFFANJALANBAIK</div>
+                <h2>Built for artists and independent releases</h2>
+              </div>
+            </div>
+            <div class="feature-grid">
+              <article class="feature-card">
+                <strong>Original sound</strong>
+                <h3>Original instrumentals</h3>
+                <p>Original instrumentals created for artists and independent musicians.</p>
+              </article>
+              <article class="feature-card">
+                <strong>Flexible licenses</strong>
+                <h3>Different licensing options</h3>
+                <p>Choose a license based on your use case and project requirements.</p>
+              </article>
+              <article class="feature-card">
+                <strong>Simple experience</strong>
+                <h3>Discover and buy quickly</h3>
+                <p>Browse, preview, select, and purchase beats through a clear storefront flow.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">How it works</div>
+                <h2>Simple steps to your next release</h2>
+              </div>
+            </div>
+            <div class="steps">
+              <div class="step"><div class="step-number">1</div><h3>Explore beats</h3><p>Browse the catalog and find your sound.</p></div>
+              <div class="step"><div class="step-number">2</div><h3>Preview</h3><p>Listen to the selected beat before adding it to your cart.</p></div>
+              <div class="step"><div class="step-number">3</div><h3>Choose a license</h3><p>Select a lease option that fits your project plans.</p></div>
+              <div class="step"><div class="step-number">4</div><h3>Checkout</h3><p>Complete the demo order review and continue your workflow.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section">
+          <div class="container">
+            <div class="cta-banner">
+              <h2>YOUR NEXT RELEASE STARTS HERE.</h2>
+              <a href="#/explore" class="btn btn-primary" data-route="explore">Explore beats</a>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderExplore() {
+      const filtered = getFilteredBeats();
+      const activeFilters = getActiveFilterList();
+
+      return `
+        <section class="page-section">
+          <div class="container">
+            <div class="page-header">
+              <div class="eyebrow">Beat catalog</div>
+              <h1>Explore beats</h1>
+              <p>Search, filter, and compare original instrumentals built for different moods and creative directions.</p>
+            </div>
+
+            <div class="toolbar">
+              <div class="search-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.7"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                <input id="searchInput" type="search" placeholder="Search by title, genre, BPM, key" value="${escapeHtml(state.search)}" aria-label="Search beats" />
+                <button type="button" class="search-clear" data-action="clear-search" aria-label="Clear search">×</button>
+              </div>
+              <select id="sortSelect" class="select" aria-label="Sort beats">
+                <option value="newest">Newest</option>
+                <option value="lowest">Lowest price</option>
+                <option value="highest">Highest price</option>
+                <option value="alphabetical-asc">Alphabetical A–Z</option>
+                <option value="alphabetical-desc">Alphabetical Z–A</option>
+              </select>
+              <button type="button" class="btn btn-secondary filter-btn" data-action="toggle-filter-drawer">Filters</button>
+            </div>
+
+            <div class="desktop-filters">
+              ${renderFilterGroup('genre', ['R&B','Trap','R&B / Trap','Jerk','Melodic Trap','Rage','Ambient Trap'])}
+              ${renderFilterGroup('bpm', ['Under 120','120–139','140–159','160 and above'])}
+              ${renderFilterGroup('key', ['F#m','C#m','G#m','Am','Dm','Em'])}
+              ${renderFilterGroup('price', ['Under $20','$20–$25','Above $25'])}
+            </div>
+
+            <div class="active-filters">${activeFilters.length ? activeFilters.map(renderFilterPill).join('') : '<span class="meta">No active filters</span>'}</div>
+
+            <div class="results-row">
+              <div class="meta">${filtered.length} result${filtered.length === 1 ? '' : 's'}</div>
+              <button type="button" class="btn btn-ghost" data-action="clear-all-filters" ${activeFilters.length ? '' : 'disabled'}>Clear all</button>
+            </div>
+
+            ${filtered.length ? `<div class="card-grid">${filtered.map(renderBeatCard).join('')}</div>` : renderEmptyState('No beats match your current filters. Try another search or reset the filters.') }
+          </div>
+        </section>
+
+        <div class="drawer-backdrop ${state.mobileMenuOpen ? 'open' : ''}" data-action="close-filter-drawer"></div>
+        <aside class="drawer ${state.mobileMenuOpen ? 'open' : ''}" id="filterDrawer" aria-label="Filter panel">
+          <div class="drawer-head">
+            <h3>Filters</h3>
+            <button type="button" class="icon-btn" data-action="close-filter-drawer" aria-label="Close filters">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          ${renderFilterDrawerContent()}
+        </aside>
+      `;
+    }
+
+    function renderDetails() {
+      const beat = BEATS.find(item => item.id === state.selectedBeatId) || BEATS[0];
+      const related = BEATS.filter(item => item.id !== beat.id).slice(0, 3);
+
+      return `
+        <section class="page-section">
+          <div class="container">
+            <div class="details-grid">
+              <div class="details-cover">${renderArtSVG(beat, true)}</div>
+              <div>
+                <div class="eyebrow">Beat details</div>
+                <h1>${beat.title}</h1>
+                <div class="beat-meta-row">
+                  <span class="spec-tag">Genre: ${beat.genre}</span>
+                  <span class="spec-tag">BPM: ${beat.bpm}</span>
+                  <span class="spec-tag">Key: ${beat.key}</span>
+                </div>
+                <div class="price-big">${formatUsd(beat.startingPrice)}</div>
+
+                ${renderAudioPlayer(beat, true)}
+
+                <div class="detail-actions">
+                  <button type="button" class="btn btn-primary" data-action="add-to-cart" data-beat-id="${beat.id}" data-license-id="basic">Add to cart</button>
+                  <a href="#/explore" class="btn btn-secondary" data-route="explore">Back to catalog</a>
+                </div>
+
+                <div class="page-section" style="padding: 0;">
+                  <h3>About this beat</h3>
+                  <p style="margin-top: 10px; max-width: 65ch;">${beat.description}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-section" style="padding-bottom: 0;">
+              <div class="section-head">
+                <div>
+                  <div class="eyebrow">License options</div>
+                  <h2>Choose a license</h2>
+                </div>
+              </div>
+              <div class="license-grid">
+                ${renderLicenseCard(beat, 'basic')}
+                ${renderLicenseCard(beat, 'premium')}
+                ${renderLicenseCard(beat, 'exclusive')}
+              </div>
+            </div>
+
+            <div class="page-section" style="padding-bottom: 0;">
+              <div class="section-head">
+                <div>
+                  <div class="eyebrow">Related beats</div>
+                  <h2>More from the catalog</h2>
+                </div>
+              </div>
+              <div class="card-grid related-grid">${related.map(renderBeatCard).join('')}</div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderAbout() {
+      return `
+        <section class="page-section">
+          <div class="container">
+            <div class="page-header">
+              <div class="eyebrow">About</div>
+              <h1>ABOUT AFFANJALANBAIK.</h1>
+              <p>AFFANJALANBAIK is an independent music producer project focused on creating instrumentals for artists and musicians. The goal is to provide accessible sounds and flexible production options for different creative directions.</p>
+            </div>
+            <div class="about-grid">
+              <article class="story-card">
+                <h3>Brand introduction</h3>
+                <p>AFFANJALANBAIK blends clean visual identity with practical production energy, creating a curated marketplace for artists that need reliable, expressive instrumental foundations.</p>
+                <p>The project focuses on modern, flexible sound design that supports vocal performance, rhythm experimentation, and independent release workflows.</p>
+              </article>
+              <article class="story-card">
+                <h3>Creative approach</h3>
+                <p>Every beat is designed to feel usable immediately while leaving room for personal interpretation. The aim is to make exploration simple, licensing clear, and creative decisions fast.</p>
+                <p>Whether a track is built for a feature, demo, or an emotional vocal arrangement, the sound remains adaptable and artist-first.</p>
+              </article>
+            </div>
+            <div class="about-grid">
+              <article class="info-card">
+                <h3>Music production philosophy</h3>
+                <p>Original instrumentals are made to help artists move quickly without sacrificing quality or identity. Each sound supports clean structure, modern rhythm, and expressive melodic direction.</p>
+              </article>
+              <article class="info-card">
+                <h3>Collaboration opportunities</h3>
+                <p>Open to collaborations, custom beat requests, and licensing conversations. If your project needs a tailored track, the studio can work toward your creative direction.</p>
+                <div class="detail-actions" style="margin-top: 16px;">
+                  <a href="#/contact" class="btn btn-primary" data-route="contact">Contact</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderContact() {
+      return `
+        <section class="page-section">
+          <div class="container">
+            <div class="page-header">
+              <div class="eyebrow">Contact</div>
+              <h1>Contact AFFANJALANBAIK</h1>
+              <p>Reach out for licensing questions, collaborations, or custom beat requests. This form is a frontend demonstration and does not send messages to a live backend.</p>
+            </div>
+            <div class="contact-grid">
+              <article class="info-card">
+                <h3>Contact details</h3>
+                <div class="contact-list">
+                  <div class="contact-item"><span>Email</span><strong>contact@example.com</strong></div>
+                  <div class="contact-item"><span>Instagram</span><strong>@affanjalanbaik</strong></div>
+                  <div class="contact-item"><span>Collaboration</span><strong>Custom beat inquiries</strong></div>
+                </div>
+              </article>
+
+              <article class="form-card">
+                <h3>Send an inquiry</h3>
+                <form id="contactForm" novalidate>
+                  <div class="field">
+                    <label for="contactName">Name</label>
+                    <input id="contactName" name="name" type="text" />
+                    <div class="input-error" data-error-for="name"></div>
+                  </div>
+                  <div class="field">
+                    <label for="contactEmail">Email</label>
+                    <input id="contactEmail" name="email" type="email" />
+                    <div class="input-error" data-error-for="email"></div>
+                  </div>
+                  <div class="field">
+                    <label for="inquiryType">Inquiry type</label>
+                    <select id="inquiryType" name="inquiryType">
+                      <option value="">Select</option>
+                      <option>General inquiry</option>
+                      <option>Collaboration</option>
+                      <option>Custom beat</option>
+                      <option>Licensing question</option>
+                    </select>
+                    <div class="input-error" data-error-for="inquiryType"></div>
+                  </div>
+                  <div class="field">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" name="message"></textarea>
+                    <div class="input-error" data-error-for="message"></div>
+                  </div>
+                  <div class="form-note">No live email integration is connected. This is a frontend demonstration only.</div>
+                  <button type="submit" class="btn btn-primary">Submit inquiry</button>
+                </form>
+              </article>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCart() {
+      const items = state.cart;
+      if (!items.length) {
+        return `
+          <section class="page-section">
+            <div class="container">
+              <div class="page-header">
+                <div class="eyebrow">Shopping cart</div>
+                <h1>Your cart is empty</h1>
+              </div>
+              <div class="empty-state">
+                <h3>No tracks selected yet</h3>
+                <p>Browse the beat catalog and add your favorite instrumentals to your cart.</p>
+                <div class="detail-actions" style="justify-content: center; margin-top: 18px;">
+                  <a href="#/explore" class="btn btn-primary" data-route="explore">Explore beats</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      const subtotal = items.reduce((sum, item) => {
+        const beat = BEATS.find(b => b.id === item.beatId);
+        const license = LICENSES[item.licenseId] || LICENSES.basic;
+        return sum + (license.price || 0) * item.quantity;
+      }, 0);
+
+      return `
+        <section class="page-section">
+          <div class="container">
+            <div class="page-header">
+              <div class="eyebrow">Shopping cart</div>
+              <h1>Review your cart</h1>
+            </div>
+           
+            <div class="cart-layout">
+              <div class="cart-list">
+                ${items.map(renderCartItem).join('')}
+              </div>
+
+              <aside class="summary-card">
+                <h3>Order summary</h3>
+                <div class="summary-line"><span>Subtotal</span><strong>${formatUsd(subtotal)}</strong></div>
+                <div class="summary-line"><span>Estimated total</span><strong>${formatUsd(subtotal)}</strong></div>
+                <div class="checkout-notice">DEMO CHECKOUT — Real payment processing has not been connected. No payment will be collected and no files will be delivered.</div>
+                <div class="detail-actions" style="margin-top: 18px;">
+                  <a href="#/checkout" class="btn btn-primary btn-block" data-route="checkout">Continue to checkout</a>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCheckout() {
+      const items = state.cart;
+      if (!items.length) {
+        return `
+          <section class="page-section">
+            <div class="container">
+              <div class="page-header">
+                <div class="eyebrow">Checkout</div>
+                <h1>Checkout</h1>
+              </div>
+              <div class="empty-state">
+                <h3>Your cart is empty</h3>
+                <p>Add at least one beat before continuing to checkout.</p>
+                <div class="detail-actions" style="justify-content: center; margin-top: 18px;">
+                  <a href="#/explore" class="btn btn-primary" data-route="explore">Explore beats</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      const subtotal = calculateCartSubtotal();
+      return `
+        <section class="page-section">
+          <div class="container">
+            <div class="page-header">
+              <div class="eyebrow">Checkout</div>
+              <h1>Review and submit</h1>
+              <p>Demo checkout only. No payment is processed and no files are delivered through this interface.</p>
+            </div>
+            <div class="cart-layout">
+              <article class="form-card">
+                <h3>Customer details</h3>
+                <form id="checkoutForm" novalidate>
+                  <div class="field">
+                    <label for="checkoutName">Full name</label>
+                    <input id="checkoutName" name="fullName" type="text" />
+                    <div class="input-error" data-error-for="fullName"></div>
+                  </div>
+                  <div class="field">
+                    <label for="checkoutEmail">Email address</label>
+                    <input id="checkoutEmail" name="email" type="email" />
+                    <div class="input-error" data-error-for="email"></div>
+                  </div>
+                  <div class="field">
+                    <label for="checkoutArtist">Artist name (optional)</label>
+                    <input id="checkoutArtist" name="artistName" type="text" />
+                  </div>
+                  <div class="field">
+                    <label for="checkoutNotes">Order notes (optional)</label>
+                    <textarea id="checkoutNotes" name="notes"></textarea>
+                  </div>
+                  <div class="checkout-notice">DEMO CHECKOUT — Real payment processing has not been connected. No payment will be collected and no files will be delivered.</div>
+                  <button type="submit" class="btn btn-primary">Submit demo order</button>
+                </form>
+              </article>
+
+              <aside class="summary-card">
+                <h3>Order summary</h3>
+                ${state.cart.map(renderCheckoutLine).join('')}
+                <div class="summary-line"><span>Subtotal</span><strong>${formatUsd(subtotal)}</strong></div>
+                <div class="summary-total"><span>Total</span><span>${formatUsd(subtotal)}</span></div>
+              </aside>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderConfirmation() {
+      const order = JSON.parse(localStorage.getItem('abDemoOrder') || 'null');
+      if (!order) {
+        return `
+          <section class="page-section">
+            <div class="container">
+              <div class="empty-state">
+                <h3>No demo order found</h3>
+                <p>Your recent checkout submission could not be located.</p>
+                <div class="detail-actions" style="justify-content: center; margin-top: 18px;">
+                  <a href="#/explore" class="btn btn-primary" data-route="explore">Explore beats</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      return `
+        <section class="page-section">
+          <div class="container">
+            <div class="page-header">
+              <div class="eyebrow">Demo status</div>
+              <h1>DEMO ORDER REVIEW</h1>
+              <p>This order is a frontend demo only and not a completed transaction.</p>
+            </div>
+
+            <div class="cart-layout">
+              <article class="summary-card">
+                <h3>Submitted details</h3>
+                <div class="summary-line"><span>Full name</span><strong>${escapeHtml(order.fullName || '—')}</strong></div>
+                <div class="summary-line"><span>Email</span><strong>${escapeHtml(order.email || '—')}</strong></div>
+                <div class="summary-line"><span>Artist name</span><strong>${escapeHtml(order.artistName || '—')}</strong></div>
+                <div class="summary-line"><span>Notes</span><strong>${escapeHtml(order.notes || 'None')}</strong></div>
+              </article>
+
+              <aside class="summary-card">
+                <h3>Order items</h3>
+                ${order.items.map(item => `
+                  <div class="summary-line">
+                    <span>${escapeHtml(item.title)} · ${escapeHtml(item.licenseName)}</span>
+                    <strong>${formatUsd(item.total)}</strong>
+                  </div>
+                `).join('')}
+                <div class="summary-total"><span>Total</span><span>${formatUsd(order.total)}</span></div>
+                <div class="checkout-notice" style="margin-top: 16px;">No real payment was processed. This is a demo order summary for review only.</div>
+              </aside>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderBeatCard(beat) {
+      const first = BEATS[0];
+      const isPlaying = state.audio.currentBeatId === beat.id && state.audio.playing;
+      return `
+        <article class="beat-card" data-beat-id="${beat.id}">
+          <div class="beat-cover">
+            ${renderArtSVG(beat)}
+            <div class="play-overlay">
+              <button type="button" class="circle-button" data-action="play-beat" data-beat-id="${beat.id}" aria-label="Preview ${beat.title}">
+                ${isPlaying ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6h3v12H8zm5 0h3v12h-3z" fill="currentColor"/></svg>' : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7-11-7z" fill="currentColor"/></svg>'}
+              </button>
+            </div>
+            ${isPlaying ? '<span class="playing-dot"></span>' : ''}
+          </div>
+          <div class="card-body">
+            <div class="card-heading">
+              <div class="card-title">${beat.title}</div>
+              <div class="card-price">${formatUsd(beat.startingPrice)}</div>
+            </div>
+            <div class="meta-row">
+              <span class="tag">${beat.genre}</span>
+              <span class="tag">${beat.bpm} BPM</span>
+              <span class="tag">${beat.key}</span>
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-secondary" data-action="view-beat" data-beat-id="${beat.id}">View details</button>
+              <button type="button" class="btn btn-primary" data-action="add-to-cart" data-beat-id="${beat.id}" data-license-id="basic">Add</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderAudioPlayer(beat, expanded = false) {
+      const hasSource = Boolean(beat.audioSource && beat.audioSource.trim());
+      const isCurrent = state.audio.currentBeatId === beat.id;
+      const progress = Math.min(100, (state.audio.currentTime / Math.max(state.audio.duration, 1)) * 100 || 0);
+      const statusText = !hasSource ? 'Preview unavailable' : isCurrent && state.audio.playing ? 'Playing' : 'Ready';
+      const canPlay = hasSource;
+      return `
+        <div class="player" aria-live="polite">
+          <div class="player-top">
+            <button type="button" class="player-play" data-action="play-beat" data-beat-id="${beat.id}" ${canPlay ? '' : 'disabled'} aria-label="Preview ${beat.title}">
+              ${isCurrent && state.audio.playing ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5h3v14H8zm5 0h3v14h-3z" fill="currentColor"/></svg>' : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7-11-7z" fill="currentColor"/></svg>'}
+            </button>
+            <div class="player-info">
+              <div class="player-title">${beat.title}</div>
+              <div class="player-time">${hasSource ? `${formatTime(state.audio.currentTime)} / ${formatTime(state.audio.duration)}` : 'No audio asset loaded'}</div>
+            </div>
+          </div>
+          <input type="range" class="player-slider" min="0" max="100" step="0.1" value="${Math.round(progress)}" ${canPlay ? '' : 'disabled'} aria-label="Playback progress for ${beat.title}" />
+          <div class="player-msg ${!hasSource ? 'error' : ''}">${statusText}</div>
+        </div>
+      `;
+    }
+
+    function renderFilterGroup(name, options) {
+      const normalized = name.toLowerCase();
+      const selected = state.filters[normalized] || [];
+      const title = name === 'bpm' ? 'BPM' : name === 'price' ? 'Price' : name === 'key' ? 'Musical key' : 'Genre';
+      const values = options;
+      return `
+        <div class="filter-panel">
+          <h4>${title}</h4>
+          <div class="chips">
+            ${values.map(option => `
+              <button type="button" class="chip ${selected.includes(option) ? 'active' : ''}" data-filter-group="${normalized}" data-filter-value="${option}">${option}</button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFilterDrawerContent() {
+      return `
+        <div class="drawer-panel">${renderFilterGroup('genre', ['R&B','Trap','R&B / Trap','Jerk','Melodic Trap','Rage','Ambient Trap']).replace(/<div class="filter-panel">|<\/div>/g, '')}</div>
+        <div class="drawer-panel">${renderFilterGroup('bpm', ['Under 120','120–139','140–159','160 and above']).replace(/<div class="filter-panel">|<\/div>/g, '')}</div>
+        <div class="drawer-panel">${renderFilterGroup('key', ['F#m','C#m','G#m','Am','Dm','Em']).replace(/<div class="filter-panel">|<\/div>/g, '')}</div>
+        <div class="drawer-panel">${renderFilterGroup('price', ['Under $20','$20–$25','Above $25']).replace(/<div class="filter-panel">|<\/div>/g, '')}</div>
+      `;
+    }
+
+    function renderLicenseCard(beat, licenseId) {
+      const license = LICENSES[licenseId];
+      const isSelected = state.selectedLicense === licenseId;
+      const price = licenseId === 'exclusive' ? 'Contact for pricing' : formatUsd(license.price);
+      return `
+        <article class="license-card ${licenseId === 'exclusive' ? 'exclusive' : ''} ${isSelected ? 'selected' : ''}" data-license-id="${licenseId}">
+          <div class="license-top">
+            <h3>${license.name}</h3>
+            <span class="tag">${licenseId === 'exclusive' ? 'Inquiry' : 'Lease'}</span>
+          </div>
+          <div class="license-price">${price}</div>
+          <ul class="license-features">
+            ${license.files.map(file => `<li>${file}</li>`).join('')}
+          </ul>
+          <div class="meta">${license.summary}</div>
+          <div class="detail-actions" style="margin-top: 14px;">
+            <button type="button" class="btn btn-primary btn-block" data-action="select-license" data-license-id="${licenseId}" data-beat-id="${beat.id}">${licenseId === 'exclusive' ? 'Request exclusive' : 'Select license'}</button>
+          </div>
+          <div class="license-link" style="margin-top: 12px; display: block;">${license.terms}</div>
+          ${licenseId === 'exclusive' ? '<div class="exclusive-callout">Availability must be confirmed and producer approval is required before any exclusive arrangement is accepted.</div>' : ''}
+        </article>
+      `;
+    }
+
+    function renderCartItem(item) {
+      const beat = BEATS.find(b => b.id === item.beatId);
+      const license = LICENSES[item.licenseId] || LICENSES.basic;
+      return `
+        <div class="cart-item">
+          <div class="cart-cover">${renderArtSVG(beat)}</div>
+          <div class="details">
+            <h3>${beat.title}</h3>
+            <div class="cart-meta">
+              <span class="tag">${beat.genre}</span>
+              <span class="tag">${beat.key}</span>
+            </div>
+            <select class="cart-license-select" data-action="update-license" data-item-id="${item.id}" aria-label="Choose license for ${beat.title}">
+              <option value="basic" ${item.licenseId === 'basic' ? 'selected' : ''}>Basic Lease — ${formatUsd(LICENSES.basic.price)}</option>
+              <option value="premium" ${item.licenseId === 'premium' ? 'selected' : ''}>Premium Lease — ${formatUsd(LICENSES.premium.price)}</option>
+              <option value="exclusive" ${item.licenseId === 'exclusive' ? 'selected' : ''}>Exclusive — Inquiry</option>
+            </select>
+            <div class="meta">${license.summary}</div>
+          </div>
+          <div style="display: grid; justify-items: end; gap: 12px;">
+            <strong>${formatUsd((license.price || 0) * item.quantity)}</strong>
+            <button type="button" class="remove-btn" data-action="remove-cart-item" data-item-id="${item.id}">Remove</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCheckoutLine(item) {
+      const beat = BEATS.find(b => b.id === item.beatId);
+      const license = LICENSES[item.licenseId] || LICENSES.basic;
+      const total = (license.price || 0) * item.quantity;
+      return `
+        <div class="summary-line">
+          <span>${beat.title} · ${license.name}</span>
+          <strong>${formatUsd(total)}</strong>
+        </div>
+      `;
+    }
+
+    function renderEmptyState(message) {
+      return `
+        <div class="state-box">
+          <h3>No beats found</h3>
+          <p>${message}</p>
+          <div class="detail-actions" style="justify-content: center; margin-top: 18px;">
+            <button type="button" class="btn btn-secondary" data-action="clear-all-filters">Clear filters</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderArtSVG(beat, large = false) {
+      const [c1, c2, c3, c4] = beat.palette;
+      return `
+        <svg class="cover-center" viewBox="0 0 340 340" role="img" aria-label="Artwork for ${beat.title}" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="grad-${beat.id}" x1="0%" x2="100%" y1="0%" y2="100%">
+              <stop offset="0%" stop-color="${c1}" />
+              <stop offset="55%" stop-color="${c2}" />
+              <stop offset="100%" stop-color="${c4}" />
+            </linearGradient>
+          </defs>
+          <rect width="340" height="340" fill="url(#grad-${beat.id})"/>
+          <circle cx="95" cy="110" r="120" fill="${c3}" opacity="0.28"/>
+          <circle cx="255" cy="232" r="138" fill="${c2}" opacity="0.34"/>
+          <path d="M-10 260C74 205 122 130 196 120C246 111 290 142 340 110V340H-10V260Z" fill="${c4}" opacity="0.22"/>
+          <path d="M40 220C92 150 150 120 216 126C246 129 278 143 312 152" stroke="${c1}" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.9"/>
+          <path d="M52 118C112 88 138 82 174 92" stroke="${c1}" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+          <path d="M70 276C130 208 216 188 278 210" stroke="${c3}" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.7"/>
+          <rect x="42" y="42" width="100" height="100" rx="18" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="220" cy="128" r="10" fill="rgba(255,255,255,0.66)"/>
+          <circle cx="148" cy="210" r="8" fill="rgba(255,255,255,0.76)"/>
+        </svg>
+      `;
+    }
+
+    function renderFilterPill(filter) {
+      const [group, value] = filter;
+      return `
+        <span class="filter-pill">
+          ${value}
+          <button type="button" data-action="remove-filter" data-filter-group="${group}" data-filter-value="${value}" aria-label="Remove filter ${value}">×</button>
+        </span>
+      `;
+    }
+
+    function getFilteredBeats() {
+      let filtered = [...BEATS];
+
+      if (state.search.trim()) {
+        const q = state.search.trim().toLowerCase();
+        filtered = filtered.filter(beat => (
+          beat.title.toLowerCase().includes(q) ||
+          beat.genre.toLowerCase().includes(q) ||
+          String(beat.bpm).includes(q) ||
+          beat.key.toLowerCase().includes(q)
+        ));
+      }
+
+      Object.keys(state.filters).forEach(group => {
+        const values = state.filters[group];
+        if (!values.length) return;
+
+        filtered = filtered.filter(beat => {
+          if (group === 'genre') return values.includes(beat.genre);
+          if (group === 'bpm') {
+            return values.some(value => {
+              if (value === 'Under 120') return beat.bpm < 120;
+              if (value === '120–139') return beat.bpm >= 120 && beat.bpm <= 139;
+              if (value === '140–159') return beat.bpm >= 140 && beat.bpm <= 159;
+              if (value === '160 and above') return beat.bpm >= 160;
+              return false;
+            });
+          }
+          if (group === 'key') return values.includes(beat.key);
+          if (group === 'price') {
+            return values.some(value => {
+              if (value === 'Under $20') return beat.startingPrice < 20;
+              if (value === '$20–$25') return beat.startingPrice >= 20 && beat.startingPrice <= 25;
+              if (value === 'Above $25') return beat.startingPrice > 25;
+              return false;
+            });
+          }
+          return true;
+        });
+      });
+
+      if (state.sort === 'lowest') filtered.sort((a, b) => a.startingPrice - b.startingPrice);
+      else if (state.sort === 'highest') filtered.sort((a, b) => b.startingPrice - a.startingPrice);
+      else if (state.sort === 'alphabetical-asc') filtered.sort((a, b) => a.title.localeCompare(b.title));
+      else if (state.sort === 'alphabetical-desc') filtered.sort((a, b) => b.title.localeCompare(a.title));
+      else filtered = filtered.slice().sort((a, b) => b.bpm - a.bpm);
+
+      return filtered;
+    }
+
+    function getActiveFilterList() {
+      const list = [];
+      Object.entries(state.filters).forEach(([group, values]) => {
+        values.forEach(value => list.push([group, value]));
+      });
+      return list;
+    }
+
+    function handleDocumentClick(event) {
+      const routeLink = event.target.closest('[data-route]');
+      if (routeLink) {
+        const route = routeLink.getAttribute('data-route');
+        if (route) {
+          event.preventDefault();
+          const newHash = route === 'home' ? '#/home' : `#/${route}`;
+          location.hash = newHash;
+          state.mobileMenuOpen = false;
+          updateMobileNav();
+          return;
+        }
+      }
+
+      const actionEl = event.target.closest('[data-action]');
+      if (!actionEl) return;
+      const action = actionEl.getAttribute('data-action');
+
+      if (action === 'toggle-menu') {
+        state.mobileMenuOpen = !state.mobileMenuOpen;
+        updateMobileNav();
+        return;
+      }
+
+      if (action === 'open-cart') {
+        location.hash = '#/cart';
+        return;
+      }
+
+      if (action === 'close-filter-drawer') {
+        state.mobileMenuOpen = false;
+        updateMobileNav();
+        return;
+      }
+
+      if (action === 'clear-search') {
+        state.search = '';
+        render();
+        return;
+      }
+
+      if (action === 'clear-all-filters') {
+        state.filters = { genre: [], bpm: [], key: [], price: [] };
+        render();
+        return;
+      }
+
+      if (action === 'toggle-filter-drawer') {
+        state.mobileMenuOpen = !state.mobileMenuOpen;
+        updateMobileNav();
+        return;
+      }
+
+      if (action === 'remove-filter') {
+        const group = actionEl.getAttribute('data-filter-group');
+        const value = actionEl.getAttribute('data-filter-value');
+        if (!group) return;
+        state.filters[group] = (state.filters[group] || []).filter(item => item !== value);
+        render();
+        return;
+      }
+
+      if (action === 'view-beat') {
+        const beatId = actionEl.getAttribute('data-beat-id');
+        state.selectedBeatId = beatId;
+        location.hash = '#/beat/' + beatId;
+        return;
+      }
+
+      if (action === 'add-to-cart') {
+        const beatId = actionEl.getAttribute('data-beat-id');
+        const licenseId = actionEl.getAttribute('data-license-id') || 'basic';
+        addToCart(beatId, licenseId);
+        return;
+      }
+
+      if (action === 'remove-cart-item') {
+        const itemId = actionEl.getAttribute('data-item-id');
+        state.cart = state.cart.filter(item => item.id !== itemId);
+        persistCart();
+        render();
+        return;
+      }
+
+      if (action === 'select-license') {
+        const beatId = actionEl.getAttribute('data-beat-id');
+        const licenseId = actionEl.getAttribute('data-license-id');
+        state.selectedBeatId = beatId;
+        state.selectedLicense = licenseId;
+        location.hash = '#/beat/' + beatId;
+        setTimeout(() => {
+          const card = document.querySelector(`[data-license-id="${licenseId}"]`);
+          if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+        return;
+      }
+
+      if (action === 'play-beat') {
+        const beatId = actionEl.getAttribute('data-beat-id');
+        toggleAudio(beatId);
+      }
+    }
+
+    function handleDocumentInput(event) {
+      const input = event.target;
+      if (input.id === 'searchInput') {
+        state.search = input.value;
+        render();
+        return;
+      }
+    }
+
+    function handleDocumentChange(event) {
+      const target = event.target;
+      if (target.id === 'sortSelect') {
+        state.sort = target.value;
+        render();
+        return;
+      }
+
+      if (target.classList && target.classList.contains('chip')) {
+        const group = target.getAttribute('data-filter-group');
+        const value = target.getAttribute('data-filter-value');
+        if (!group || !value) return;
+        const current = state.filters[group] || [];
+        if (current.includes(value)) {
+          state.filters[group] = current.filter(item => item !== value);
+        } else {
+          state.filters[group] = [...current, value];
+        }
+        render();
+      }
+
+      if (target.classList && target.classList.contains('cart-license-select')) {
+        const itemId = target.getAttribute('data-item-id');
+        const newLicense = target.value;
+        state.cart = state.cart.map(item => {
+          if (item.id === itemId) {
+            return { ...item, licenseId: newLicense };
+          }
+          return item;
+        });
+        persistCart();
+        render();
+      }
+    }
+
+    function handleDocumentSubmit(event) {
+      const form = event.target;
+      if (form.id === 'contactForm') {
+        event.preventDefault();
+        const values = {
+          name: form.querySelector('[name="name"]').value.trim(),
+          email: form.querySelector('[name="email"]').value.trim(),
+          inquiryType: form.querySelector('[name="inquiryType"]').value,
+          message: form.querySelector('[name="message"]').value.trim()
+        };
+
+        const errors = validateContactForm(values);
+        showFieldErrors(form, errors);
+        if (Object.keys(errors).length) {
+          return;
+        }
+
+        showToast('Demo inquiry submitted. No live email was sent.');
+        form.reset();
+        return;
+      }
+
+      if (form.id === 'checkoutForm') {
+        event.preventDefault();
+        const values = {
+          fullName: form.querySelector('[name="fullName"]').value.trim(),
+          email: form.querySelector('[name="email"]').value.trim(),
+          artistName: form.querySelector('[name="artistName"]').value.trim(),
+          notes: form.querySelector('[name="notes"]').value.trim()
+        };
+
+        const errors = validateCheckoutForm(values);
+        showFieldErrors(form, errors);
+        if (Object.keys(errors).length) {
+          return;
+        }
+
+        const orderItems = state.cart.map(item => {
+          const beat = BEATS.find(b => b.id === item.beatId);
+          const license = LICENSES[item.licenseId] || LICENSES.basic;
+          return {
+            beatId: item.beatId,
+            title: beat.title,
+            licenseId: item.licenseId,
+            licenseName: license.name,
+            total: (license.price || 0) * item.quantity
+          };
+        });
+
+        const total = orderItems.reduce((sum, item) => sum + item.total, 0);
+        const order = {
+          fullName: values.fullName,
+          email: values.email,
+          artistName: values.artistName,
+          notes: values.notes,
+          items: orderItems,
+          total
+        };
+
+        localStorage.setItem('abDemoOrder', JSON.stringify(order));
+        state.cart = [];
+        persistCart();
+        location.hash = '#/confirmation';
+        showToast('Demo order reviewed.');
+      }
+    }
+
+    function validateContactForm(values) {
+      const errors = {};
+      if (!values.name) errors.name = 'Name is required.';
+      if (!values.email) errors.email = 'Email is required.';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = 'Please enter a valid email.';
+      if (!values.inquiryType) errors.inquiryType = 'Please choose an inquiry type.';
+      if (!values.message) errors.message = 'Message is required.';
+      return errors;
+    }
+
+    function validateCheckoutForm(values) {
+      const errors = {};
+      if (!values.fullName) errors.fullName = 'Full name is required.';
+      if (!values.email) errors.email = 'Email is required.';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = 'Please enter a valid email address.';
+      return errors;
+    }
+
+    function showFieldErrors(form, errors) {
+      form.querySelectorAll('.input-error').forEach(node => node.textContent = '');
+      Object.entries(errors).forEach(([key, value]) => {
+        const node = form.querySelector(`[data-error-for="${key}"]`);
+        if (node) node.textContent = value;
+      });
+    }
+
+    function addToCart(beatId, licenseId) {
+      const beat = BEATS.find(item => item.id === beatId);
+      if (!beat) return;
+      if (licenseId === 'exclusive') {
+        showToast('Exclusive licensing requires producer confirmation.');
+        state.selectedBeatId = beatId;
+        location.hash = '#/beat/' + beatId;
+        return;
+      }
+
+      const existing = state.cart.find(item => item.beatId === beatId && item.licenseId === licenseId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        state.cart.push({ id: `${beatId}-${licenseId}-${Date.now()}`, beatId, licenseId, quantity: 1 });
+      }
+
+      persistCart();
+      renderCartBadge();
+      showToast(`${beat.title} added to cart.`);
+      if (state.route === 'cart') render();
+    }
+
+    function calculateCartSubtotal() {
+      return state.cart.reduce((sum, item) => {
+        const license = LICENSES[item.licenseId] || LICENSES.basic;
+        return sum + (license.price || 0) * item.quantity;
+      }, 0);
+    }
+
+    function persistCart() {
+      localStorage.setItem('abCart', JSON.stringify(state.cart));
+    }
+
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem('abCart');
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed.filter(item => item && item.beatId && item.licenseId) : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(state.toastTimer);
+      state.toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    function renderCartBadge() {
+      const badge = document.querySelector('.cart-badge');
+      if (!badge) return;
+      const total = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      badge.textContent = total;
+    }
+
+    function updateActiveNav() {
+      const links = document.querySelectorAll('[data-route]');
+      const current = state.route === 'detail' ? 'explore' : state.route;
+      links.forEach(link => {
+        const route = link.getAttribute('data-route');
+        link.classList.toggle('active', route === current);
+      });
+    }
+
+    function updateMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      if (!nav) return;
+      nav.classList.toggle('open', state.mobileMenuOpen);
+      const links = nav.querySelectorAll('a');
+      const current = state.route === 'detail' ? 'explore' : state.route;
+      links.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-route') === current);
+      });
+    }
+
+    function renderMobileMenu() {
+      const mobile = document.getElementById('mobileNav');
+      if (!mobile) return;
+      mobile.classList.toggle('open', state.mobileMenuOpen);
+    }
+
+    function renderFilterDrawer() {
+      const drawer = document.getElementById('filterDrawer');
+      if (!drawer) return;
+      drawer.classList.toggle('open', state.mobileMenuOpen);
+      const backdrop = document.querySelector('.drawer-backdrop');
+      if (backdrop) backdrop.classList.toggle('open', state.mobileMenuOpen);
+    }
+
+    function toggleAudio(beatId) {
+      const beat = BEATS.find(item => item.id === beatId);
+      if (!beat || !beat.audioSource) {
+        showToast('Preview unavailable. Add an MP3 source to enable playback.');
+        return;
+      }
+
+      const audio = state.audio.element;
+      if (state.audio.currentBeatId === beatId && !audio.paused) {
+        audio.pause();
+        state.audio.playing = false;
+        state.audio.currentBeatId = null;
+        render();
+        return;
+      }
+
+      const current = state.audio.currentBeatId;
+      if (current && current !== beatId && !audio.paused) {
+        audio.pause();
+      }
+
+      if (audio.src !== beat.audioSource) {
+        audio.src = beat.audioSource;
+      }
+
+      state.audio.currentBeatId = beatId;
+      audio.play().then(() => {
+        state.audio.playing = true;
+        render();
+      }).catch(() => {
+        state.audio.playing = false;
+        showToast('Audio preview could not start.');
+      });
+    }
+
+    function formatUsd(value) {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value || 0));
+    }
+
+    function formatTime(value) {
+      if (!Number.isFinite(value) || value <= 0) return '0:00';
+      const minutes = Math.floor(value / 60);
+      const seconds = Math.floor(value % 60).toString().padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>
