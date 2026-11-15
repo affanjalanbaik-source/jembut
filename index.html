@@ -35,7 +35,9 @@
     body {
       margin: 0;
       font-family: var(--font);
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(183, 230, 90, 0.14), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #fbfbfc 100%);
       color: var(--text);
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
@@ -115,6 +117,10 @@
       color: var(--text2);
       font-weight: 700;
       margin-bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(183, 230, 90, 0.12);
+      border: 1px solid rgba(183, 230, 90, 0.22);
     }
     .meta {
       font-size: 12px;
@@ -152,12 +158,14 @@
     .btn-primary {
       background: var(--dark);
       color: var(--white);
+      box-shadow: 0 6px 18px rgba(23,23,23,0.12);
     }
     .btn-primary:hover { background: #000; }
     .btn-secondary {
-      background: transparent;
+      background: rgba(255,255,255,0.78);
       color: var(--text);
       border-color: var(--border);
+      backdrop-filter: blur(6px);
     }
     .btn-secondary:hover { border-color: var(--text); }
     .btn-accent {
@@ -188,11 +196,12 @@
       position: sticky;
       top: 0;
       z-index: 120;
-      background: rgba(255, 255, 255, 0.92);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid rgba(23,23,23,0.06);
       backdrop-filter: saturate(180%) blur(16px);
       -webkit-backdrop-filter: saturate(180%) blur(16px);
       padding-top: env(safe-area-inset-top);
+      box-shadow: 0 1px 0 rgba(23,23,23,0.02);
     }
     .header-inner {
       max-width: var(--maxw);
@@ -342,6 +351,9 @@
       flex-direction: column;
       gap: 18px;
     }
+    .hero-copy h1 {
+      text-shadow: 0 0 0 rgba(0,0,0,0);
+    }
     .hero-copy p {
       font-size: 17px;
       max-width: 44ch;
@@ -356,6 +368,9 @@
     .hero-art {
       width: min(100%, 440px);
       justify-self: end;
+      background: linear-gradient(135deg, rgba(183,230,90,0.08), rgba(255,255,255,0));
+      border-radius: 28px;
+      padding: 18px;
     }
     @media (max-width: 860px) {
       .hero-grid { grid-template-columns: 1fr; }
@@ -368,8 +383,9 @@
       aspect-ratio: 1;
       border-radius: 26px;
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(23,23,23,0.08);
       background: linear-gradient(135deg, #f1f3f0 0%, #ffffff 100%);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.08);
     }
 
     .section-head {
@@ -410,19 +426,31 @@
     }
 
     .beat-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,247,248,0.56) 100%);
+      border: 1px solid rgba(23,23,23,0.07);
       border-radius: var(--radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
       min-height: 100%;
+      position: relative;
+    }
+    .beat-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(183,230,90,0.04) 100%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
     }
     .beat-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.07);
+      border-color: rgba(23,23,23,0.12);
     }
+    .beat-card:hover::after { opacity: 1; }
     .beat-cover {
       position: relative;
       aspect-ratio: 1;
@@ -458,7 +486,9 @@
       box-shadow: 0 10px 24px rgba(0,0,0,0.14);
       position: relative;
       z-index: 2;
+      transition: transform 0.18s ease;
     }
+    .beat-card:hover .circle-button { transform: scale(1.05); }
     .playing-dot {
       position: absolute;
       top: 10px;
@@ -478,8 +508,35 @@
       padding: 14px 16px 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       flex: 1;
+    }
+    .card-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      padding-bottom: 2px;
+    }
+    .mini-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: rgba(183, 230, 90, 0.18);
+      border: 1px solid rgba(183, 230, 90, 0.28);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 8px;
+    }
+    .mini-badge.soft {
+      background: var(--bg2);
+      border-color: var(--border);
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-weight: 700;
     }
     .card-heading {
       display: flex;
@@ -540,6 +597,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--bg2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
     }
     .feature-card strong {
       display: inline-block;
@@ -570,6 +628,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--bg);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.02);
     }
     .step-number {
       width: 32px;
@@ -588,11 +647,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(183,230,90,0.12), rgba(247,247,248,0.9));
+      border: 1px solid rgba(183,230,90,0.24);
       border-radius: 20px;
       padding: 24px 22px;
       flex-wrap: wrap;
+      box-shadow: 0 14px 24px rgba(0,0,0,0.02);
     }
     .cta-banner h2 {
       font-size: clamp(24px, 3vw, 34px);
@@ -615,12 +675,14 @@
       padding: 0 44px 0 42px;
       border: 1px solid var(--border);
       border-radius: 10px;
-      background: var(--bg);
+      background: rgba(255,255,255,0.86);
       color: var(--text);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
     }
     .search-wrap input:focus {
       outline: none;
       border-color: var(--text);
+      box-shadow: 0 0 0 3px rgba(23,23,23,0.04);
     }
     .search-wrap svg {
       position: absolute;
@@ -650,7 +712,7 @@
       min-height: 46px;
       border: 1px solid var(--border);
       border-radius: 10px;
-      background: var(--bg);
+      background: rgba(255,255,255,0.86);
       color: var(--text);
       padding: 0 12px;
       min-width: 160px;
@@ -703,6 +765,7 @@
       background: var(--text);
       color: var(--white);
       border-color: var(--text);
+      box-shadow: 0 6px 16px rgba(23,23,23,0.12);
     }
     .chip.active::before {
       content: "";
@@ -810,7 +873,7 @@
     .player {
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      background: var(--bg2);
+      background: linear-gradient(180deg, rgba(247,247,248,0.9), rgba(240,241,242,0.8));
       padding: 14px 16px;
       margin-top: 18px;
     }
@@ -830,11 +893,13 @@
       background: var(--dark);
       color: var(--white);
       flex-shrink: 0;
+      box-shadow: 0 8px 16px rgba(23,23,23,0.12);
     }
     .player-play[disabled] {
       background: var(--bg3);
       color: var(--muted);
       cursor: not-allowed;
+      box-shadow: none;
     }
     .player-info {
       flex: 1;
@@ -897,9 +962,10 @@
       .details-grid { grid-template-columns: 1fr; gap: 24px; }
     }
     .details-cover {
-      border: 1px solid var(--border);
+      border: 1px solid rgba(23,23,23,0.08);
       border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
     }
     .beat-meta-row {
       display: flex;
@@ -1100,7 +1166,7 @@
       min-height: 46px;
       border: 1px solid var(--border);
       border-radius: 10px;
-      background: var(--bg);
+      background: rgba(255,255,255,0.8);
       color: var(--text);
       padding: 10px 12px;
     }
@@ -1874,7 +1940,7 @@
                     <textarea id="contactMessage" name="message"></textarea>
                     <div class="input-error" data-error-for="message"></div>
                   </div>
-                  <div class="form-note">No live email integration is connected. This is a frontend demonstration only.</div>
+                  <div class="form-note">No live email integration is connected. This is a frontend demo only.</div>
                   <button type="submit" class="btn btn-primary">Submit inquiry</button>
                 </form>
               </article>
@@ -2064,8 +2130,8 @@
     }
 
     function renderBeatCard(beat) {
-      const first = BEATS[0];
       const isPlaying = state.audio.currentBeatId === beat.id && state.audio.playing;
+      const badgeText = beat.genre.includes('Trap') ? 'Featured' : 'New';
       return `
         <article class="beat-card" data-beat-id="${beat.id}">
           <div class="beat-cover">
@@ -2078,13 +2144,16 @@
             ${isPlaying ? '<span class="playing-dot"></span>' : ''}
           </div>
           <div class="card-body">
+            <div class="card-topline">
+              <span class="mini-badge">${badgeText}</span>
+              <span class="mini-badge soft">${beat.bpm} BPM</span>
+            </div>
             <div class="card-heading">
               <div class="card-title">${beat.title}</div>
               <div class="card-price">${formatUsd(beat.startingPrice)}</div>
             </div>
             <div class="meta-row">
               <span class="tag">${beat.genre}</span>
-              <span class="tag">${beat.bpm} BPM</span>
               <span class="tag">${beat.key}</span>
             </div>
             <div class="card-actions">
